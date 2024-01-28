@@ -23,20 +23,20 @@
 	        list : []
 	    },   
 	    methods: {
-	        // fnGetList : function(){
-	        //     var self = this;
-	        //     var nparmap = {};
-	        //     $.ajax({
-	        //         url:"list.dox",
-	        //         dataType:"json",    
-	        //         type : "POST", 
-	        //         data : nparmap,
-	        //         success : function(data) { 
-	        //             console.log(data);
-	        //             self.list = data.list;
-	        //         }
-	        //     }); 
-	        // },
+	         fnGetList : function(){
+	             var self = this;
+	             var nparmap = {};
+	             $.ajax({
+	                 url:"list.dox",
+	                 dataType:"json",    
+	                 type : "POST", 
+	                 data : nparmap,
+	                 success : function(data) { 
+	                     console.log(data);
+	                     self.list = data.list;
+	                 }
+	             }); 
+	         },
 			fnConnectWebSocket: function() {
 			    const webSocket = new WebSocket('ws://localhost:8081/test1');
 			

@@ -1,5 +1,7 @@
 package com.example.ddaom.config;
 
+import java.io.IOException;
+
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketHandler;
@@ -10,12 +12,23 @@ public class YourWebSocketHandler implements WebSocketHandler {
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) {
-        // 클라이언트와의 연결이 성공했을 때의 처리 로직
     }
 
     @Override
     public void handleMessage(WebSocketSession session, WebSocketMessage<?> message) {
-        // 클라이언트로부터 메시지를 받았을 때의 처리 로직
+        // 클라이언트와의 연결이 성공했을 때의 처리 로직
+    	String msg = "연결 성공시 메세지";
+        
+        // 원하는 내용을 가진 TextMessage 생성
+        TextMessage textMessage = new TextMessage(msg);
+
+        try {
+            // 생성한 메시지를 연결된 클라이언트에게 전송
+            session.sendMessage(message);
+        } catch (IOException e) {
+            // IOException 처리 로직 추가
+            e.printStackTrace();
+        }
     }
 
     @Override
