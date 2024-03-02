@@ -64,23 +64,6 @@
 	                 }
 	             }); 
 	         },
-			fnConnectWebSocket: function() {
-				const webSocket = new WebSocket('ws://localhost:8081/test1');
-			
-				webSocket.onopen = function(event) {
-					console.log('WebSocket 연결 성공');
-					// JSON 형식의 메시지 생성
-					const message = {
-						test: 'helloworld'
-					};
-					// 메시지를 JSON 문자열로 변환하여 전송
-					webSocket.send(JSON.stringify(message));
-				};
-			
-			    webSocket.onmessage = function(event) {
-			        console.log('서버로부터 메시지 수신:', event.data);
-			    };
-			},
 	         openCR : function(){
 	         	window.location.href = 'chatRoomList.do';
 	         }
@@ -88,7 +71,6 @@
 	    created: function () {
 	        var self = this;
 	        self.fnGetList();
-	        self.fnConnectWebSocket(); // WebSocket 연결
 	    }
 	});
 

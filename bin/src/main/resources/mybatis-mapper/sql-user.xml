@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.ddaom.mapper.UserMapper">
+	<select id="selectUserList" parameterType="hashmap" resultType="com.example.ddaom.model.User">
+		SELECT *
+		FROM user_tbl
+	</select>
+	
+	<insert id="addChatRoom" parameterType="hashmap">
+		INSERT INTO `chatroom_tbl` (`cr_name`) VALUES(#{newRoomTitle});
+	</insert>
+	
+	<select id="selectChatRoomList" parameterType="hashmap" resultType="com.example.ddaom.model.Chatroom">
+		SELECT *
+		FROM chatroom_tbl
+	</select>
+	
+	<insert id="addChat" parameterType="hashmap">
+		INSERT INTO `chatting_tbl` (`user_id`, `cr_no`, `chat_message`) VALUES('aaaa', #{crNo}, #{chatMessage});
+	</insert>
+	
+	<select id="chatList" parameterType="hashmap" resultType="com.example.ddaom.model.Chat">
+		SELECT chat_no as chatNo, user_id as userId, cr_no as crNo, chat_date as chatDate, chat_message as chatMessage
+		FROM chatting_tbl
+		WHERE cr_no = #{crNo}
+	</select>
+</mapper>
