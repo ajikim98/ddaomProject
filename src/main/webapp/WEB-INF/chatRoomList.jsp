@@ -75,7 +75,7 @@
 	             }); 
 	         },
 			fnConnectWebSocket: function() {
-			    const webSocket = new WebSocket('ws://localhost:8081/test1');
+			    const webSocket = new WebSocket('ws://localhost:8082/test1');
 			
 				webSocket.onopen = function(event) {
 					console.log('WebSocket 연결 성공');

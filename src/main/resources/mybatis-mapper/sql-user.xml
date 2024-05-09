@@ -8,21 +8,21 @@
 	</select>
 	
 	<insert id="addChatRoom" parameterType="hashmap">
-		INSERT INTO `chatroom_tbl` (`cr_name`) VALUES(#{newRoomTitle});
+		INSERT INTO `chat_room_tbl` (`CR_NAME`) VALUES(#{newRoomTitle});
 	</insert>
 	
 	<select id="selectChatRoomList" parameterType="hashmap" resultType="com.example.ddaom.model.Chatroom">
 		SELECT *
-		FROM chatroom_tbl
+		FROM chat_room_tbl
 	</select>
 	
 	<insert id="addChat" parameterType="hashmap">
-		INSERT INTO `chatting_tbl` (`user_id`, `cr_no`, `chat_message`) VALUES('aaaa', #{crNo}, #{chatMessage});
+		INSERT INTO `chatting_tbl` (`USER_ID`, `CR_NO`, `CHAT_MESSAGE`) VALUES('user001', #{crNo}, #{chatMessage});
 	</insert>
 	
 	<select id="chatList" parameterType="hashmap" resultType="com.example.ddaom.model.Chat">
-		SELECT chat_no as chatNo, user_id as userId, cr_no as crNo, chat_date as chatDate, chat_message as chatMessage
+		SELECT chat_no as chatNo, USER_ID as userId, CR_NO as crNo, CHAT_DATE as chatDate, CHAT_MESSAGE as chatMessage
 		FROM chatting_tbl
-		WHERE cr_no = #{crNo}
+		WHERE CR_NO = #{crNo}
 	</select>
 </mapper>
