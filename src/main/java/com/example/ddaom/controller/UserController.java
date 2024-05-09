@@ -30,6 +30,12 @@ public class UserController {
 	@Autowired
 	HttpSession session;
 	
+	@RequestMapping("/join.do") 
+    public String join(Model model) throws Exception{
+
+        return "/join";
+    }
+
 	@RequestMapping("/user.do") 
     public String main(Model model) throws Exception{
 

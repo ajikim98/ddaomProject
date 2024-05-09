@@ -2,24 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.ddaom.mapper.UserMapper">
+	<!-- user 목록 츌력 -->
 	<select id="selectUserList" parameterType="hashmap" resultType="com.example.ddaom.model.User">
 		SELECT *
 		FROM user_tbl
 	</select>
 	
+	<!-- 채팅방 만들기 -->
 	<insert id="addChatRoom" parameterType="hashmap">
-		INSERT INTO `chat_room_tbl` (`CR_NAME`) VALUES(#{newRoomTitle});
+    INSERT INTO `chat_room_tbl` (`CR_NAME`) VALUES (#{newRoomTitle});
+    INSERT INTO `join_room_tbl` (`CR_NO`, `USER_ID`) VALUES (LAST_INSERT_ID(), #{userId});
 	</insert>
 	
+	<!-- 채팅방 보기 -->
 	<select id="selectChatRoomList" parameterType="hashmap" resultType="com.example.ddaom.model.Chatroom">
 		SELECT *
 		FROM chat_room_tbl
 	</select>
 	
+	<!-- 채팅 치기 -->
 	<insert id="addChat" parameterType="hashmap">
 		INSERT INTO `chatting_tbl` (`USER_ID`, `CR_NO`, `CHAT_MESSAGE`) VALUES('user001', #{crNo}, #{chatMessage});
 	</insert>
 	
+	<!-- 채팅 방별 채팅 보기 -->
 	<select id="chatList" parameterType="hashmap" resultType="com.example.ddaom.model.Chat">
 		SELECT chat_no as chatNo, USER_ID as userId, CR_NO as crNo, CHAT_DATE as chatDate, CHAT_MESSAGE as chatMessage
 		FROM chatting_tbl
