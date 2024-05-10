@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.ddaom.dao.UserService;
+import com.example.ddaom.model.Certified;
 import com.example.ddaom.model.Chat;
 import com.example.ddaom.model.Chatroom;
 import com.example.ddaom.model.User;
@@ -119,7 +120,22 @@ public class UserController {
 	@ResponseBody
 	public String userJoin(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		userService.userJoin(map);
+		userService.userLogin(map);
+		if(resultMap.containsKey("user")) {
+			Certified user = (Certified)resultMap.get("user");
+			session.setAttribute("sessionId", user.getUserId());
+			//세션유지시간 1시간지정
+			session.setMaxInactiveInterval(360*60);
+			//session.setAttribute("sessionStatus", user.getStatus());
+		}
+		return new Gson().toJson(resultMap);
+	}
+
+	@RequestMapping(value = "/userLogin.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String userLogin(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		userService.userLogin(map);
 		return new Gson().toJson(resultMap);
 	}
 	

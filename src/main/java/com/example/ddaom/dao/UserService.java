@@ -20,5 +20,7 @@ public interface UserService {
 	List<Chat> chatList(HashMap<String, Object> map);
 
 	int userJoin (HashMap<String, Object> map);
+
+	HashMap<String, Object> userLogin(HashMap<String, Object> map);
 	
 }
