@@ -54,7 +54,7 @@
 	             	}); 
                 },
                 userJoin: function() {
-					window.open('popup/join.jsp','width=600,height=400,resizable=yes');
+					window.open('join.do', '_blank', 'width=600,height=400,resizable=yes');
                 }
             }
         });

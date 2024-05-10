@@ -39,7 +39,7 @@ public class UserController {
 	@RequestMapping("/join.do") 
     public String join(Model model) throws Exception{
 
-        return "/join";
+        return "/popup/join";
     }
 
 	@RequestMapping("/user.do") 
@@ -51,7 +51,7 @@ public class UserController {
 	@RequestMapping("/addRoomPage.do") 
 	public String addRoomPage(Model model) throws Exception{
 		
-		return "/addRoomPage";
+		return "/popup/addRoomPage";
 	}
 	
 	@RequestMapping("/viewChatRoom.do") 

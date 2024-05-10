@@ -68,9 +68,8 @@
 	                 	type : "POST", 
 	                 	data : nparmap,
 	                 	success : function(data) { 
-		                    //   window.close();
-		                    //   window.opener.location.reload();
-
+		                      window.close();
+		                      window.opener.location.reload();
 		                 }
 	             	}); 
                 }
