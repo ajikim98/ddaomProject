@@ -20,23 +20,10 @@
 			<label for="uPw">pw:</label>
 			<input type="text" id="uPw" v-model="uPw">
 		</div>
-		<div>
-			<label for="uName">이름:</label>
-			<input type="text" id="uName" v-model="uName">
-		</div>
-		<div>
-			<label for="uPhone">폰:</label>
-			<input type="text" id="uPhone" v-model="uPhone">
-		</div>
-		<div>
-			<label for="uEmail">이메일:</label>
-			<input type="text" id="uEmail" v-model="uEmail">
-		</div>
-		<div>
-			<label for="uBirth">생일:</label>
-			<input type="text" id="uBirth" v-model="uBirth">
-		</div>
-        <div><button @click="addRoom">추가</button></div>
+        <div>
+            <button @click="userLogin">로그인</button>
+            <button @click="userJoin">회원가입</button>
+        </div>
     </div>
 </body>
 </html>
@@ -44,31 +31,30 @@
         var addRoomApp = new Vue({
             el: '#addRoomApp',
             data: {
-                uId: '', // 아이디
-				uPw : '',
-				uName : '',
-				uPhone : '',
-				uEmail : '',
-				uBirth : ''
+                uId: '',
+				uPw : ''
             },
             methods: {
-                addRoom: function() {
+                userLogin: function() {
 					var self = this;
 	             	var nparmap = {
                     	uId: self.uId,
                     	uPw: self.uPw
                 	};
 	            	 $.ajax({
-	                 	url:"user-join.dox",
+	                 	url:"userLogin.dox",
 	                 	dataType:"json",    
 	                 	type : "POST", 
 	                 	data : nparmap,
 	                 	success : function(data) { 
-		                      window.close();
-		                      window.opener.location.reload();
+		                    //   window.close();
+		                    //   window.opener.location.reload();
 
 		                 }
 	             	}); 
+                },
+                userJoin: function() {
+					window.open('popup/join.jsp','width=600,height=400,resizable=yes');
                 }
             }
         });

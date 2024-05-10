@@ -47,4 +47,14 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		return userMapper.chatList(map);
 	}
+
+	@Override
+	public int userJoin(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+
+			userMapper.userJoin1(map);
+			userMapper.userJoin2(map);
+			userMapper.userJoin3(map);
+		return userMapper.userJoin4(map);
+	}
 }

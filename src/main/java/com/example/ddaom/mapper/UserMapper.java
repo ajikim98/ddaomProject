@@ -20,5 +20,9 @@ public interface UserMapper {
 	int addChat (HashMap<String, Object> map);
 	
 	List<Chat> chatList(HashMap<String, Object> map);
-	
+
+	int userJoin1 (HashMap<String, Object> map);
+	int userJoin2 (HashMap<String, Object> map);
+	int userJoin3 (HashMap<String, Object> map);
+	int userJoin4 (HashMap<String, Object> map);
 }

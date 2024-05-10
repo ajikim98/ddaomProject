@@ -30,6 +30,12 @@ public class UserController {
 	@Autowired
 	HttpSession session;
 	
+	@RequestMapping("/login.do") 
+    public String login(Model model) throws Exception{
+
+        return "/login";
+    }
+
 	@RequestMapping("/join.do") 
     public String join(Model model) throws Exception{
 
@@ -98,7 +104,7 @@ public class UserController {
 		resultMap.put("message", "success");
 		return new Gson().toJson(resultMap);
 	}
-	
+
 	@RequestMapping(value = "/chatList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String chatList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
@@ -106,6 +112,14 @@ public class UserController {
 		List<Chat> list = userService.chatList(map);
 		resultMap.put("list", list);
 		resultMap.put("result", "success");
+		return new Gson().toJson(resultMap);
+	}
+
+	@RequestMapping(value = "/userJoin.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String userJoin(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		userService.userJoin(map);
 		return new Gson().toJson(resultMap);
 	}
 	

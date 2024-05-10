@@ -31,4 +31,18 @@
 		FROM chatting_tbl
 		WHERE CR_NO = #{crNo}
 	</select>
+
+	<!-- 회원가입 -->
+	<insert id="userJoin1" parameterType="hashmap">
+		INSERT INTO `user_tbl` (`USER_ID`, `USER_NAME`, `USER_PHONE`, `USER_EMAIL`, `USER_BIRTH`) VALUES (#{uId}, #{uName}, #{uPhone}, #{uEmail}, #{uBirth});
+	</insert>
+	<insert id="userJoin2" parameterType="hashmap">
+		INSERT INTO `setting_tbl` (`USER_ID`) VALUES (#{uId});
+	</insert>
+	<insert id="userJoin3" parameterType="hashmap">
+		INSERT INTO `profile_tbl` (`USER_ID`, `PF_NICKNAME`) VALUES (#{uId}, #{uName});
+	</insert>
+	<insert id="userJoin4" parameterType="hashmap">
+		INSERT INTO `certified_tbl` (`USER_ID`, `USER_PW`) VALUES (#{uId}, #{uPw});
+	</insert>
 </mapper>
