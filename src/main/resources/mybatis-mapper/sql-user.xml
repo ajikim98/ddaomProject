@@ -54,27 +54,27 @@
 	<!-- 로그인 성공 -->
 	<select id="selectUser" parameterType="hashmap" resultType="com.example.ddaom.model.Certified">
 		SELECT *
-		FROM chatting_tbl
+		FROM certified_tbl
 		WHERE USER_ID = #{uId} AND USER_PW = #{uPw}
 	</select>
 	<!-- PW 오류 -->
 	<select id="userCheckId" parameterType="hashmap" resultType="com.example.ddaom.model.Certified">
 		SELECT *
 		FROM certified_tbl
-		WHERE U_ID = #{uId}
+		WHERE USER_ID = #{uId}
 	</select>
 	<!-- PW 오류시 오류 횟수 추가 -->
 	<update id="updateUserCnt" parameterType="hashmap">
-		UPDATE T4_USER
+		UPDATE certified_tbl
 		SET
 			CF_P_CNT = CF_P_CNT + 1
-		WHERE U_ID = #{uId}
+		WHERE USER_ID = #{uId}
 	</update>
 	<!-- 로그인 성공시 PW오류횟수 초기화 -->
 	<update id="resetUserCnt" parameterType="hashmap">
 		UPDATE certified_tbl
 		SET
 			CF_P_CNT = 0
-		WHERE U_ID = #{uId}
+		WHERE USER_ID = #{uId}
 	</update>
 </mapper>

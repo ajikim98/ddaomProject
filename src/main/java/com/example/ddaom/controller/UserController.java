@@ -120,14 +120,8 @@ public class UserController {
 	@ResponseBody
 	public String userJoin(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		userService.userLogin(map);
-		if(resultMap.containsKey("user")) {
-			Certified user = (Certified)resultMap.get("user");
-			session.setAttribute("sessionId", user.getUserId());
-			//세션유지시간 1시간지정
-			session.setMaxInactiveInterval(360*60);
-			//session.setAttribute("sessionStatus", user.getStatus());
-		}
+		userService.userJoin(map);
+
 		return new Gson().toJson(resultMap);
 	}
 
@@ -135,6 +129,13 @@ public class UserController {
 	@ResponseBody
 	public String userLogin(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		if(resultMap.containsKey("user")) {
+			Certified user = (Certified)resultMap.get("user");
+			session.setAttribute("sessionId", user.getUserId());
+			//세션유지시간 1시간지정
+			session.setMaxInactiveInterval(360*60);
+			//session.setAttribute("sessionStatus", user.getStatus());
+		}
 		userService.userLogin(map);
 		return new Gson().toJson(resultMap);
 	}

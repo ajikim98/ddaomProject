@@ -11,7 +11,7 @@
 <style>
 </style>
 <body>
-    <div id="App">
+    <div id="app">
 		<div>
 			<label for="uId">아이디:</label>
 			<input type="text" id="uId" v-model="uId">
@@ -41,8 +41,8 @@
 </body>
 </html>
 <script type="text/javascript">
-        var addRoomApp = new Vue({
-            el: 'App',
+        var app = new Vue({
+            el: '#app',
             data: {
                 uId: '',
 				uPw : '',
