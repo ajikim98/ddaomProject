@@ -106,4 +106,16 @@ public class UserServiceImpl implements UserService{
 		
 		return resultMap;
 	}
+
+	@Override
+	public User searchFriend(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return userMapper.searchFriend(map);
+	}
+
+	@Override
+	public int addFriend(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return userMapper.addFriend(map);
+	}
 }

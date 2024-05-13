@@ -27,7 +27,7 @@
 	
 	<!-- 채팅 치기 -->
 	<insert id="addChat" parameterType="hashmap">
-		INSERT INTO `chatting_tbl` (`USER_ID`, `CR_NO`, `CHAT_MESSAGE`) VALUES('user001', #{crNo}, #{chatMessage});
+		INSERT INTO `chatting_tbl` (`USER_ID`, `CR_NO`, `CHAT_MESSAGE`) VALUES(#{sessionId}, #{crNo}, #{chatMessage});
 	</insert>
 	
 	<!-- 채팅 방별 채팅 보기 -->
@@ -81,4 +81,15 @@
 			CF_P_CNT = 0
 		WHERE USER_ID = #{uId}
 	</update>
+
+	<!-- 친구 조회 -->
+	<select id="searchFriend" parameterType="hashmap" resultType="com.example.ddaom.model.User">
+		SELECT *
+		FROM user_tbl
+		WHERE USER_ID = #{yourFriend}
+	</select>
+	<!-- 친구 추가 -->
+	<insert id="addFriend" parameterType="hashmap">
+		INSERT INTO `profile_tbl` (`USER_ID`, `FRI_UID`) VALUES (#{sessionId}, #{yourFriend});
+	</insert>
 </mapper>

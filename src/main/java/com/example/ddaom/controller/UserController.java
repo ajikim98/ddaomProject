@@ -55,6 +55,18 @@ public class UserController {
 		return "/popup/addRoomPage";
 	}
 	
+	@RequestMapping("/addFriend.do") 
+	public String addFriend(Model model) throws Exception{
+		
+		return "/popup/addFriend";
+	}
+
+	@RequestMapping("/friendList.do") 
+	public String friendList(Model model) throws Exception{
+		
+		return "friendList";
+	}
+	
 	@RequestMapping("/viewChatRoom.do") 
 	public String viewChatRoom(Model model) throws Exception{
 		
@@ -105,7 +117,7 @@ public class UserController {
 		resultMap.put("message", "success");
 		return new Gson().toJson(resultMap);
 	}
-
+	
 	@RequestMapping(value = "/chatList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String chatList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
@@ -115,16 +127,16 @@ public class UserController {
 		resultMap.put("result", "success");
 		return new Gson().toJson(resultMap);
 	}
-
+	
 	@RequestMapping(value = "/userJoin.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String userJoin(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		userService.userJoin(map);
-
+		
 		return new Gson().toJson(resultMap);
 	}
-
+	
 	@RequestMapping(value = "/userLogin.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String userLogin(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
@@ -133,13 +145,31 @@ public class UserController {
 		if(resultMap.containsKey("user")) {
 			Certified user = (Certified)resultMap.get("user");
 			session.setAttribute("sessionId", user.getUserId());
-
+			
 			//세션유지시간 1시간지정
 			session.setMaxInactiveInterval(360*60);
 		}
 		return new Gson().toJson(resultMap);
 	}
 	
+
+	@RequestMapping(value = "/searchFriend.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String searchFriend(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		User info =  userService.searchFriend(map);
+		resultMap.put("info", info);		
+		return new Gson().toJson(resultMap);
+	}
+
+	@RequestMapping(value = "/addFriend.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String addFriend(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		userService.addFriend(map);
+		resultMap.put("message", "success");
+		return new Gson().toJson(resultMap);
+	}
 }
 
 

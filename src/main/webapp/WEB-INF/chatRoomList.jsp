@@ -100,7 +100,7 @@
 	             }); 
             },
             openChatRoomPopup: function(crNo) {
-                window.open('viewChatRoom.do?crNo=' + crNo, crNo, 'width=600,height=400,resizable=yes');
+                window.open('popup/viewChatRoom.do?crNo=' + crNo, crNo, 'width=600,height=400,resizable=yes');
             },
 	    },//methods - end
 	    created: function () {

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.omg.PortableInterceptor.USER_EXCEPTION;
 
 import com.example.ddaom.model.Certified;
 import com.example.ddaom.model.Chat;
@@ -39,4 +40,10 @@ public interface UserMapper {
 
 	//로그인 성공시 PW오류횟수 초기화
 	int resetUserCnt(HashMap<String, Object> map);
+
+	User searchFriend(HashMap<String, Object> map);
+
+	int addFriend(HashMap<String, Object> map);
+
+
 }

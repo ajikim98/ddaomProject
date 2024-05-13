@@ -22,5 +22,9 @@ public interface UserService {
 	int userJoin (HashMap<String, Object> map);
 
 	HashMap<String, Object> userLogin(HashMap<String, Object> map);
+
+	User searchFriend(HashMap<String, Object> map);
+
+	int addFriend(HashMap<String, Object> map);
 	
 }
