@@ -9,18 +9,19 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.WebSocketMessage;
 import org.springframework.web.socket.WebSocketSession;
+import org.springframework.lang.NonNull;
 
 public class YourWebSocketHandler implements WebSocketHandler {
 
 	Set<WebSocketSession> sessions = new HashSet<WebSocketSession>();
 	
     @Override
-    public void afterConnectionEstablished(WebSocketSession session) {
+    public void afterConnectionEstablished(@NonNull WebSocketSession session) {
     	sessions.add(session);
     }
 
     @Override
-    public void handleMessage(WebSocketSession session, WebSocketMessage<?> message) {
+    public void handleMessage(@NonNull WebSocketSession session,@NonNull WebSocketMessage<?> message) {
         // 세션이 열려있는지 확인
         if (session.isOpen()) {
             if (message instanceof PongMessage) {
@@ -48,12 +49,12 @@ public class YourWebSocketHandler implements WebSocketHandler {
     }
 
     @Override
-    public void handleTransportError(WebSocketSession session, Throwable exception) {
+    public void handleTransportError(@NonNull WebSocketSession session, @NonNull Throwable exception) {
         // 에러 발생 시 처리 로직
     }
 
     @Override
-    public void afterConnectionClosed(WebSocketSession session, CloseStatus closeStatus) {
+    public void afterConnectionClosed(@NonNull WebSocketSession session, @NonNull CloseStatus closeStatus) {
         // 클라이언트와의 연결이 종료되었을 때의 처리 로직
     }
 
