@@ -29,7 +29,9 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public int addChatRoom(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
-		return userMapper.addChatRoom(map);
+
+		userMapper.addChatRoom1(map);
+		return userMapper.addChatRoom2(map);
 	}
 
 	@Override

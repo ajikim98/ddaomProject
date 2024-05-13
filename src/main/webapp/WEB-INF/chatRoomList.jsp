@@ -56,25 +56,10 @@
 	var app = new Vue({ 
 	    el: '#app',
 	    data: {
-	        list : [],
 	        chatRooms: [],
 			sessionId : '${sessionId}'
 	    },   
 	    methods: {
-	         fnGetList : function(){
-	             var self = this;
-	             var nparmap = {};
-	             $.ajax({
-	                 url:"list.dox",
-	                 dataType:"json",    
-	                 type : "POST", 
-	                 data : nparmap,
-	                 success : function(data) { 
-	                     console.log(data);
-	                     self.list = data.list;
-	                 }
-	             }); 
-	         },
 			fnConnectWebSocket: function() {
 			    const webSocket = new WebSocket('ws://localhost:8082/test1');
 			
@@ -100,7 +85,9 @@
             },
             fetchChatRooms: function() {
            		var self = this;
-	            var nparmap = {};
+	            var nparmap = {
+					sessionId: self.sessionId,
+				};
 	            $.ajax({
 	                 url:"chatRoomList.dox",
 	                 dataType:"json",    
@@ -118,7 +105,6 @@
 	    },//methods - end
 	    created: function () {
 	        var self = this;
-	        self.fnGetList();
 	        self.fnConnectWebSocket(); // WebSocket 연결
 	        self.fetchChatRooms();
 	    }

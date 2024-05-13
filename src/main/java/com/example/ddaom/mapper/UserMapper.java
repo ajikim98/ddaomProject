@@ -14,7 +14,8 @@ import com.example.ddaom.model.User;
 public interface UserMapper {
 	List<User> selectUserList(HashMap<String, Object> map);
 	
-	int addChatRoom (HashMap<String, Object> map);
+	int addChatRoom1 (HashMap<String, Object> map);
+	int addChatRoom2 (HashMap<String, Object> map);
 	
 	List<Chatroom> selectChatRoomList(HashMap<String, Object> map);
 	

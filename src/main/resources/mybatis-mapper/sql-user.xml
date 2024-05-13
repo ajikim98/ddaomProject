@@ -8,16 +8,21 @@
 		FROM user_tbl
 	</select>
 	
-	<!-- 채팅방 만들기 -->
-	<insert id="addChatRoom" parameterType="hashmap">
+	<!-- 채팅방 만들기/채팅방 추가 -->
+	<insert id="addChatRoom1" parameterType="hashmap">
     INSERT INTO `chat_room_tbl` (`CR_NAME`) VALUES (#{newRoomTitle});
-    INSERT INTO `join_room_tbl` (`CR_NO`, `USER_ID`) VALUES (LAST_INSERT_ID(), #{userId});
+	</insert>
+	<!-- 채팅방 만들기/조인방 추가 -->
+	<insert id="addChatRoom2" parameterType="hashmap">
+    INSERT INTO `join_room_tbl` (`CR_NO`, `USER_ID`) VALUES (LAST_INSERT_ID(), #{sessionId});
 	</insert>
 	
 	<!-- 채팅방 보기 -->
 	<select id="selectChatRoomList" parameterType="hashmap" resultType="com.example.ddaom.model.Chatroom">
-		SELECT *
-		FROM chat_room_tbl
+		SELECT R.*
+			FROM chat_room_tbl R
+			INNER JOIN join_room_tbl J ON R.CR_NO = J.CR_NO
+		WHERE J.USER_ID = #{sessionId}
 	</select>
 	
 	<!-- 채팅 치기 -->
@@ -51,7 +56,6 @@
 	</insert>
 
 	<!-- 로그인 -->
-	<!-- 로그인 성공 -->
 	<select id="selectUser" parameterType="hashmap" resultType="com.example.ddaom.model.Certified">
 		SELECT *
 		FROM certified_tbl

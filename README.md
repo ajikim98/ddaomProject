@@ -9,8 +9,7 @@ spring.datasource.url=jdbc:mysql://54.180.124.185:3306/ddaom_db?characterEncodin
 spring.datasource.username=root
 spring.datasource.password=test1212
 
-# 깃 주소 (프론트엔드)
+# 깃 주소
 https://github.com/takion9538/DDAOM.git
 
-# 깃 주소 (백엔드)
-https://github.com/ajikim98/ddaomProject.git
+

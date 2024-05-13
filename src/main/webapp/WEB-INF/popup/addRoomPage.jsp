@@ -22,13 +22,15 @@
         var addRoomApp = new Vue({
             el: '#addRoomApp',
             data: {
-                newRoomTitle: '' // 새로운 방의 제목
+                newRoomTitle: '', // 새로운 방의 제목
+				sessionId : '${sessionId}'
             },
             methods: {
                 addRoom: function() {
 					var self = this;
 	             	var nparmap = {
-                    	newRoomTitle: self.newRoomTitle
+                    	newRoomTitle: self.newRoomTitle,
+						sessionId: self.sessionId
                 	};
 	            	 $.ajax({
 	                 	url:"addRoom.dox",
