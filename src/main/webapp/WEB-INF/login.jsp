@@ -46,9 +46,22 @@
 	                 	dataType:"json",    
 	                 	type : "POST", 
 	                 	data : nparmap,
-	                 	success : function(data) { 
-	                 		window.location.href = 'user.do';
-		                 }
+						 success : function(data) { 
+                	console.log(data);
+                	if(data.success){
+                		if(self.uId === "admin"){
+                			alert(self.uId+"님 환영합니다!");
+                		 	$.pageChange("user.do", {uId : self.uId}); 
+                		}else{
+	                		alert(data.message);
+	                	 	$.pageChange("chatRoomList.do", {uId : self.uId}); 
+                		}
+                	} else {
+                		alert(data.message);
+                		console.log(data.uId);
+                	}
+                	
+                }
 	             	}); 
                 },
                 userJoin: function() {

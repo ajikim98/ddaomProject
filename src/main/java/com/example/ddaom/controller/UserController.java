@@ -3,6 +3,7 @@ package com.example.ddaom.controller;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,10 +31,9 @@ public class UserController {
 	
 	@Autowired
 	HttpSession session;
-	
-	@RequestMapping("/login.do") 
-    public String login(Model model) throws Exception{
 
+	@RequestMapping("login.do") 
+    public String login(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
         return "/login";
     }
 
@@ -129,14 +129,14 @@ public class UserController {
 	@ResponseBody
 	public String userLogin(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap = userService.userLogin(map);
 		if(resultMap.containsKey("user")) {
 			Certified user = (Certified)resultMap.get("user");
 			session.setAttribute("sessionId", user.getUserId());
+
 			//세션유지시간 1시간지정
 			session.setMaxInactiveInterval(360*60);
-			//session.setAttribute("sessionStatus", user.getStatus());
 		}
-		userService.userLogin(map);
 		return new Gson().toJson(resultMap);
 	}
 	

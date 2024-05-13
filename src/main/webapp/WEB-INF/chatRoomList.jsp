@@ -57,7 +57,8 @@
 	    el: '#app',
 	    data: {
 	        list : [],
-	        chatRooms: []
+	        chatRooms: [],
+			sessionId : '${sessionId}'
 	    },   
 	    methods: {
 	         fnGetList : function(){

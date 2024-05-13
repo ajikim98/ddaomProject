@@ -11,6 +11,7 @@ import com.example.ddaom.model.Certified;
 import com.example.ddaom.model.Chat;
 import com.example.ddaom.model.Chatroom;
 import com.example.ddaom.model.User;
+import com.example.ddaom.util.PasswordHashing;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -53,9 +54,13 @@ public class UserServiceImpl implements UserService{
 	public int userJoin(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 
-			userMapper.userJoin1(map);
-			userMapper.userJoin2(map);
-			userMapper.userJoin3(map);
+		String hashedPassword = PasswordHashing.hashPassword((String) map.get("uPw"));
+        map.put("uPw", hashedPassword); // 해시된 비밀번호로 대체
+
+		userMapper.userJoin1(map);
+		userMapper.userJoin2(map);
+		userMapper.userJoin3(map);
+
 		return userMapper.userJoin4(map);
 	}
 
@@ -63,7 +68,13 @@ public class UserServiceImpl implements UserService{
 	public HashMap<String, Object> userLogin(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+
+		// 사용자가 입력한 패스워드를 암호화합니다.
+		String hashedPassword = PasswordHashing.hashPassword((String) map.get("uPw"));
+		map.put("uPw", hashedPassword); // 암호화된 패스워드로 대체
+		
 		Certified user = userMapper.selectUser(map);
+		
 		if(user != null) {
 			if(user.getCfPCnt() >= 5) {
 				resultMap.put("success", false);
